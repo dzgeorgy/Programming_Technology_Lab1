@@ -51,7 +51,7 @@ namespace task1
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
 	 */
-	int find_sum_of_odd_elements(const int* array, int array_size);
+	int sum_of_odd_elements(const int* array, int array_size);
 
 	/**
 	 * Finds a sum of elements between first and last negative elements.
@@ -59,5 +59,5 @@ namespace task1
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
 	 */
-	int find_sum_of_elements_between_first_and_last_negatives(const int* array, int array_size);
+	int sum_of_elements_between_first_and_last_negatives(const int* array, int array_size);
 }

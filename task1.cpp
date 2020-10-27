@@ -18,7 +18,7 @@ void task1::menu()
 				auto array_size = read_int();
 				auto* array = new int[array_size];
 				fill_array(array, array_size);
-				int sum = find_sum_of_odd_elements(array, array_size);
+				int sum = sum_of_odd_elements(array, array_size);
 				printf("Sum of odd elements is %d\n", sum);
 				break;
 			}
@@ -28,7 +28,7 @@ void task1::menu()
 				auto array_size = read_int();
 				auto* array = new int[array_size];
 				fill_array(array, array_size);
-				int sum_x = find_sum_of_elements_between_first_and_last_negatives(array, array_size);
+				int sum_x = sum_of_elements_between_first_and_last_negatives(array, array_size);
 				printf("Second sum is %d\n", sum_x);
 				break;
 			}
@@ -58,7 +58,7 @@ void task1::print_array(const int* array, int array_size)
 		printf("%d\t", array[i]);
 }
 
-int task1::find_sum_of_odd_elements(const int* array, int array_size)
+int task1::sum_of_odd_elements(const int* array, int array_size)
 {
 	auto sum = 0;
 	for (int i = 0; i < array_size; i += 2)
@@ -66,7 +66,7 @@ int task1::find_sum_of_odd_elements(const int* array, int array_size)
 	return sum;
 }
 
-int task1::find_sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
+int task1::sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
 {
 	auto first_negative_index = -1;
 	auto last_negative_index = -1;
