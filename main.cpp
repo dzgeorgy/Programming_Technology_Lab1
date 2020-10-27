@@ -12,9 +12,9 @@ int main()
 bool main_menu()
 {
 	std::printf("Choose an option:\n"
-				"1: Task1\n"
-				"2: Task2\n"
-				"3: Task3\n"
+				"1: Seminar 1\n"
+				"2: Seminar 2\n"
+				"3: Seminar 3\n"
 				"4: Exit\n");
 	try
 	{
@@ -22,7 +22,7 @@ bool main_menu()
 		switch (action)
 		{
 		case 1:
-			printf("Option 1\n");
+			task1::menu();
 			return true;
 		case 2:
 			printf("Option 2\n");
