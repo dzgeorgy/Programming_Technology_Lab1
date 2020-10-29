@@ -61,3 +61,45 @@ namespace task1
 	 */
 	int sum_of_elements_between_first_and_last_negatives(const int* array, int array_size);
 }
+
+/**
+ * Namespace for functions related to task 2.
+ */
+namespace task2
+{
+
+	/**
+ 	* Prints out menu for second task and handles user's choice.
+ 	*/
+	void menu();
+
+	/**
+	 * Lets user to fill an matrix.
+	 * @param matrix - an array to fill.
+	 * @param matrix_size - size of given array.
+	 */
+	void fill_matrix(int** matrix, int matrix_size);
+
+	/**
+	 * Prints out a matrix.
+	 * @param matrix - a matrix to print.
+	 * @param matrix_size - size of given matrix.
+	 */
+	void print_matrix(int** matrix, int matrix_size);
+
+	/**
+	 * Finds quantity of elements in rows which does not contain negative
+	 * @param matrix - a matrix of elements
+	 * @param matrix_size - size of given matrix
+	 * @return quantity of elements
+	 */
+	int* quantity_of_elements_in_rows_without_negative(int** matrix, int matrix_size);
+
+	/**
+	 *
+	 * @param matrix - a matrix of elements
+	 * @param matrix_size - size of given matrix
+	 * @return max sum between diagonals parallel to main
+	 */
+	int find_max_sum_in_diagonals(int** matrix, int matrix_size);
+}

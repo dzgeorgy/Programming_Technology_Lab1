@@ -25,7 +25,7 @@ bool main_menu()
 			task1::menu();
 			return true;
 		case 2:
-			printf("Option 2\n");
+			task2::menu();
 			return true;
 		case 3:
 			printf("Option 3\n");
