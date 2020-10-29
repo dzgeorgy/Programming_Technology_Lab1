@@ -20,12 +20,23 @@ void task2::menu()
 				for (int i = 0; i < matrix_size; i++)
 					matrix[i] = new int[matrix_size];
 				fill_matrix(matrix, matrix_size);
-				print_matrix(matrix, matrix_size);
-				quantity_of_elements_in_rows_without_negative(matrix, matrix_size);
+				//print_matrix(matrix, matrix_size);
+				auto val = quantity_of_elements_in_rows_without_negative(matrix, matrix_size);
+				printf("Res: %d", *val);
 				break;
 			}
 			case 2:
+			{
+				printf("Please enter square matrix size: ");
+				auto matrix_size = read_int();
+				auto** matrix = new int* [matrix_size];
+				for (int i = 0; i < matrix_size; i++)
+					matrix[i] = new int[matrix_size];
+				fill_matrix(matrix, matrix_size);
+				auto result = find_max_sum_in_diagonals(matrix, matrix_size);
+				printf("Result: %d", result);
 				break;
+			}
 			case 3:
 				return;
 			default:
@@ -74,5 +85,13 @@ int* task2::quantity_of_elements_in_rows_without_negative(int** matrix, int matr
 
 int task2::find_max_sum_in_diagonals(int** matrix, int matrix_size)
 {
-
+	int max = matrix[0][matrix_size - 1];
+	for (int k = -matrix_size + 1; k < matrix_size; ++k)
+	{
+		int sum = 0;
+		for (int i = std::max(0, k), j = std::max(-k, 0); j < std::min(matrix_size, matrix_size - k); i++, j++)
+			sum += matrix[i][j];
+		if (max < sum) max = sum;
+	}
+	return max;
 }
