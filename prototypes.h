@@ -103,3 +103,20 @@ namespace task2
 	 */
 	int find_max_sum_in_diagonals(int** matrix, int matrix_size);
 }
+
+/**
+ * Namespace for functions related to task 3.
+ */
+namespace task3
+{
+
+	/**
+ 	* Prints out menu for second task and handles user's choice.
+ 	*/
+	void menu();
+
+	std::string read_string(const std::string& path);
+
+	bool isVowel(char c);
+
+}
