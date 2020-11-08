@@ -21,6 +21,30 @@ static int read_int()
 }
 
 /**
+ * Clears screen by using os-dependent terminal commands
+ */
+static void clear_screen()
+{
+#if defined(_WIN32)
+	system("cls");
+#elif defined(__APPLE__) || defined(__linux__)
+	system("clear");
+#endif
+}
+
+/**
+ * Awaits user's interaction with terminal by using os-dependent terminal commands
+ */
+static void await_input()
+{
+#if defined(_WIN32)
+	system("pause");
+#elif defined(__APPLE__) || defined(__linux__)
+	system("read -n1 -r -p \"Press any key to continue...\n\"");
+#endif
+}
+
+/**
  * Namespace for functions related to task 1.
  */
 namespace task1
