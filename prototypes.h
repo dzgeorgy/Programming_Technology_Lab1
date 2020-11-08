@@ -21,6 +21,17 @@ static int read_int()
 }
 
 /**
+ * Prints out header
+ * @param title - string which should be used as title
+ */
+static void print_header(const std::string& title)
+{
+	printf("===================================================================\n"
+		   "%s\n"
+		   "===================================================================\n", title.c_str());
+}
+
+/**
  * Clears screen by using os-dependent terminal commands
  */
 static void clear_screen()
