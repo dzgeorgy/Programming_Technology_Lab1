@@ -20,8 +20,7 @@ bool main_menu()
 				"4: Exit\n");
 	try
 	{
-		auto action = read_int();
-		switch (action)
+		switch (read_int())
 		{
 		case 1:
 			seminar3::menu();
@@ -40,7 +39,7 @@ bool main_menu()
 	}
 	catch (const std::invalid_argument& exception)
 	{
-		printf("You entered incorrect value! Please try again.\n\n\n");
+		printf("You entered incorrect value! Please try again.\n");
 		await_input();
 		return true;
 	}
