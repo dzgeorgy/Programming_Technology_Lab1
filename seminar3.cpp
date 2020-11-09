@@ -87,7 +87,7 @@ void seminar3::print_array(const int* array, int array_size)
 int seminar3::sum_of_odd_elements(const int* array, int array_size)
 {
 	auto sum = 0;
-	for (int i = 0; i < array_size; i += 2)
+	for (int i = 1; i < array_size; i += 2)
 		sum += array[i];
 	if (array_size < 4)
 		throw std::range_error("Not enough elements in array!\n");
