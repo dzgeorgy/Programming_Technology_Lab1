@@ -154,4 +154,6 @@ namespace task3
 
 	bool isVowel(char c);
 
+	void print_path(const std::string& path);
+
 }

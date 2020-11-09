@@ -2,8 +2,17 @@
 
 void task3::menu()
 {
+	clear_screen();
+	print_header("Main >> Seminar 5");
+	printf("Please enter path to file:\n");
+	std::string path;
+	std::cin.ignore();
+	std::getline(std::cin, path);
 	while (true)
 	{
+		clear_screen();
+		print_header("Main >> Seminar 5");
+		print_path(path);
 		printf("Choose an option:\n"
 			   "1: Find words which start with vowel\n"
 			   "2: Back\n");
@@ -13,10 +22,11 @@ void task3::menu()
 			{
 			case 1:
 			{
-				printf("Please enter path to file\n");
-				std::string path;
-				std::cin >> path;
+				clear_screen();
+				print_header("Main >> Seminar 5");
+				print_path(path);
 				printf("%s", read_string(path).c_str());
+				await_input();
 				break;
 			}
 			case 2:
@@ -30,6 +40,11 @@ void task3::menu()
 			printf("You entered incorrect value! Please try again.\n\n\n");
 		}
 	}
+}
+
+void task3::print_path(const std::string& path)
+{
+	printf("Path is: %s\n===================================================================\n", path.c_str());
 }
 
 std::string task3::read_string(const std::string& path)

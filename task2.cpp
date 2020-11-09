@@ -2,8 +2,19 @@
 
 void task2::menu()
 {
+	clear_screen();
+	print_header("Main >> Seminar 4");
+	printf("Please enter square matrix size:\n");
+	auto matrix_size = read_int();
+	auto** matrix = new int* [matrix_size];
+	for (int i = 0; i < matrix_size; i++)
+		matrix[i] = new int[matrix_size];
+	fill_matrix(matrix, matrix_size);
 	while (true)
 	{
+		clear_screen();
+		print_header("Main >> Seminar 4");
+		print_matrix(matrix, matrix_size);
 		printf("Choose an option:\n"
 			   "1: Find quantity of elements in rows without negative elements\n"
 			   "2: Find max sum of elements of diagonals which are parallel to main\n"
@@ -14,27 +25,22 @@ void task2::menu()
 			{
 			case 1:
 			{
-				printf("Please enter square matrix size: ");
-				auto matrix_size = read_int();
-				auto** matrix = new int* [matrix_size];
-				for (int i = 0; i < matrix_size; i++)
-					matrix[i] = new int[matrix_size];
-				fill_matrix(matrix, matrix_size);
-				//print_matrix(matrix, matrix_size);
-				auto val = quantity_of_elements_in_rows_without_negative(matrix, matrix_size);
-				printf("Res: %d", *val);
+				auto quantity = quantity_of_elements_in_rows_without_negative(matrix, matrix_size);
+				clear_screen();
+				print_header("Main >> Seminar 4");
+				print_matrix(matrix, matrix_size);
+				printf("Quantity of elements is %d\n", quantity);
+				await_input();
 				break;
 			}
 			case 2:
 			{
-				printf("Please enter square matrix size: ");
-				auto matrix_size = read_int();
-				auto** matrix = new int* [matrix_size];
-				for (int i = 0; i < matrix_size; i++)
-					matrix[i] = new int[matrix_size];
-				fill_matrix(matrix, matrix_size);
-				auto result = find_max_sum_in_diagonals(matrix, matrix_size);
-				printf("Result: %d", result);
+				auto sum = find_max_sum_in_diagonals(matrix, matrix_size);
+				clear_screen();
+				print_header("Main >> Seminar 4");
+				print_matrix(matrix, matrix_size);
+				printf("Max sum of elements is %d\n", sum);
+				await_input();
 				break;
 			}
 			case 3:
@@ -45,7 +51,8 @@ void task2::menu()
 		}
 		catch (const std::invalid_argument& exception)
 		{
-			printf("You entered incorrect value! Please try again.\n\n\n");
+			printf("You entered incorrect value! Please try again.\n");
+			await_input();
 		}
 	}
 }
@@ -60,12 +67,14 @@ void task2::fill_matrix(int** matrix, int matrix_size)
 
 void task2::print_matrix(int** matrix, int matrix_size)
 {
+	printf("Current matrix is:\n");
 	for (int i = 0; i < matrix_size; i++)
 	{
 		for (int j = 0; j < matrix_size; j++)
-			printf("%d", matrix[i][j]);
+			printf("%d ", matrix[i][j]);
 		printf("\n");
 	}
+	printf("\n===================================================================\n");
 }
 
 int* task2::quantity_of_elements_in_rows_without_negative(int** matrix, int matrix_size)

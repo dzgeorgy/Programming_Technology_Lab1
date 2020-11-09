@@ -11,6 +11,8 @@ int main()
 
 bool main_menu()
 {
+	clear_screen();
+	print_header("Main");
 	std::printf("Choose an option:\n"
 				"1: Seminar 1\n"
 				"2: Seminar 2\n"
@@ -39,6 +41,7 @@ bool main_menu()
 	catch (const std::invalid_argument& exception)
 	{
 		printf("You entered incorrect value! Please try again.\n\n\n");
+		await_input();
 		return true;
 	}
 }
