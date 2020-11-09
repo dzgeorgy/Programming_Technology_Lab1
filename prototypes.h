@@ -150,10 +150,24 @@ namespace seminar5
  	*/
 	void menu();
 
+	/**
+	 * Reads file from specified path and returns string with words starts with vowels
+	 * @param path - string which represents path to file which should be opened
+	 * @return string read from
+	 */
 	std::string read_string(const std::string& path);
 
+	/**
+	 * Checks if given char is vowel
+	 * @param c - char that should be checked
+	 * @return true if it's vowel and false otherwise
+	 */
 	bool isVowel(char c);
 
+	/**
+	 * Prints current path to opened file
+	 * @param path - string which represents path to file
+	 */
 	void print_path(const std::string& path);
 
 }
