@@ -117,5 +117,7 @@ int seminar3::sum_of_elements_between_first_and_last_negatives(const int* array,
 		for (int i = first_negative_index + 1; i < last_negative_index; i++)
 			sum += array[i];
 	}
+	else
+		throw std::range_error("Unknown exception!");
 	return sum;
 }
