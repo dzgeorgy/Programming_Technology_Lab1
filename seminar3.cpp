@@ -1,6 +1,6 @@
 #include "prototypes.h"
 
-void task1::menu()
+void seminar3::menu()
 {
 	clear_screen();
 	print_header("Main >> Seminar 3");
@@ -55,14 +55,14 @@ void task1::menu()
 	}
 }
 
-void task1::fill_array(int* array, int array_size)
+void seminar3::fill_array(int* array, int array_size)
 {
 	printf("Please fill an array:\n");
 	for (int i = 0; i < array_size; i++)
 		array[i] = read_int();
 }
 
-void task1::print_array(const int* array, int array_size)
+void seminar3::print_array(const int* array, int array_size)
 {
 	printf("Current array is: [ ");
 	for (int i = 0; i < array_size; i++)
@@ -70,7 +70,7 @@ void task1::print_array(const int* array, int array_size)
 	printf("]\n===================================================================\n");
 }
 
-int task1::sum_of_odd_elements(const int* array, int array_size)
+int seminar3::sum_of_odd_elements(const int* array, int array_size)
 {
 	auto sum = 0;
 	for (int i = 0; i < array_size; i += 2)
@@ -78,7 +78,7 @@ int task1::sum_of_odd_elements(const int* array, int array_size)
 	return sum;
 }
 
-int task1::sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
+int seminar3::sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
 {
 	auto first_negative_index = -1;
 	auto last_negative_index = -1;

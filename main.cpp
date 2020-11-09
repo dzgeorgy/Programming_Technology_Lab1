@@ -24,13 +24,13 @@ bool main_menu()
 		switch (action)
 		{
 		case 1:
-			task1::menu();
+			seminar3::menu();
 			return true;
 		case 2:
-			task2::menu();
+			seminar4::menu();
 			return true;
 		case 3:
-			task3::menu();
+			seminar5::menu();
 			return true;
 		case 4:
 			return false;

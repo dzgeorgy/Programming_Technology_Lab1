@@ -56,9 +56,9 @@ static void await_input()
 }
 
 /**
- * Namespace for functions related to task 1.
+ * Namespace for functions related to seminar 3.
  */
-namespace task1
+namespace seminar3
 {
 
 	/**
@@ -98,9 +98,9 @@ namespace task1
 }
 
 /**
- * Namespace for functions related to task 2.
+ * Namespace for functions related to seminar 4.
  */
-namespace task2
+namespace seminar4
 {
 
 	/**
@@ -140,9 +140,9 @@ namespace task2
 }
 
 /**
- * Namespace for functions related to task 3.
+ * Namespace for functions related to seminar 5.
  */
-namespace task3
+namespace seminar5
 {
 
 	/**

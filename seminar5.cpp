@@ -1,6 +1,6 @@
 #include "prototypes.h"
 
-void task3::menu()
+void seminar5::menu()
 {
 	clear_screen();
 	print_header("Main >> Seminar 5");
@@ -42,12 +42,12 @@ void task3::menu()
 	}
 }
 
-void task3::print_path(const std::string& path)
+void seminar5::print_path(const std::string& path)
 {
 	printf("Path is: %s\n===================================================================\n", path.c_str());
 }
 
-std::string task3::read_string(const std::string& path)
+std::string seminar5::read_string(const std::string& path)
 {
 	std::ifstream file(path);
 	if (!file.good()) return "";
@@ -67,7 +67,7 @@ std::string task3::read_string(const std::string& path)
 	return "";
 }
 
-bool task3::isVowel(char c)
+bool seminar5::isVowel(char c)
 {
 	return c == 'A' || c == 'a' || c == 'E' || c == 'e' ||
 		   c == 'Y' || c == 'y' || c == 'U' || c == 'u' ||
