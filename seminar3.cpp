@@ -23,21 +23,35 @@ void seminar3::menu()
 			{
 			case 1:
 			{
-				int sum = sum_of_odd_elements(array, array_size);
 				clear_screen();
 				print_header("Main >> Seminar 3");
 				print_array(array, array_size);
-				printf("Sum of odd elements is %d\n", sum);
+				try
+				{
+					int sum = sum_of_odd_elements(array, array_size);
+					printf("Sum of odd elements is %d\n", sum);
+				}
+				catch (const std::range_error& exception)
+				{
+					printf("Sum can't be found! Reason: %s", exception.what());
+				}
 				await_input();
 				break;
 			}
 			case 2:
 			{
-				int sum_x = sum_of_elements_between_first_and_last_negatives(array, array_size);
 				clear_screen();
 				print_header("Main >> Seminar 3");
 				print_array(array, array_size);
-				printf("Sum of elements between first and last negatives is %d\n", sum_x);
+				try
+				{
+					int sum_x = sum_of_elements_between_first_and_last_negatives(array, array_size);
+					printf("Sum of elements between first and last negatives is %d\n", sum_x);
+				}
+				catch (const std::range_error& exception)
+				{
+					printf("Sum can't be found! Reason: %s", exception.what());
+				}
 				await_input();
 				break;
 			}
@@ -75,6 +89,8 @@ int seminar3::sum_of_odd_elements(const int* array, int array_size)
 	auto sum = 0;
 	for (int i = 0; i < array_size; i += 2)
 		sum += array[i];
+	if (array_size < 4)
+		throw std::range_error("Not enough elements in array!\n");
 	return sum;
 }
 
@@ -88,7 +104,15 @@ int seminar3::sum_of_elements_between_first_and_last_negatives(const int* array,
 		if (first_negative_index == -1 && array[i] < 0) first_negative_index = i;
 		if (last_negative_index == -1 && array[array_size - 1 - i] < 0) last_negative_index = array_size - 1 - i;
 	}
-	if (first_negative_index < last_negative_index && first_negative_index != -1)
+	if (array_size == 1)
+		throw std::range_error("There's only one element in array!\n");
+	else if (first_negative_index == -1 && last_negative_index == -1)
+		throw std::range_error("There's no negative elements!\n");
+	else if (first_negative_index == -1 || last_negative_index == -1)
+		throw std::range_error("There's only one negative element!\n");
+	else if (std::abs(first_negative_index - last_negative_index) == 1)
+		throw std::range_error("There's no elements between first and last negatives!\n");
+	else if (first_negative_index < last_negative_index)
 	{
 		for (int i = first_negative_index + 1; i < last_negative_index; i++)
 			sum += array[i];
