@@ -25,7 +25,14 @@ void seminar5::menu()
 				clear_screen();
 				print_header("Main >> Seminar 5");
 				print_path(path);
-				printf("%s", read_string(path).c_str());
+				try
+				{
+					printf("%s\n", read_string(path).c_str());
+				}
+				catch (const std::logic_error& exception)
+				{
+					printf("Unable to read file! Reason: %s", exception.what());
+				}
 				await_input();
 				break;
 			}
@@ -50,21 +57,22 @@ void seminar5::print_path(const std::string& path)
 std::string seminar5::read_string(const std::string& path)
 {
 	std::ifstream file(path);
-	if (!file.good()) return "";
+	std::string result;
 	char word[15];
 	int words_vowel_count = 0;
+	if (file.eof()) throw std::logic_error("File is empty!\n");
 	while (file >> word)
 	{
 		if (isVowel(word[0]))
 		{
-			printf("%s ", word);
+			result.append(word).append(" ");
 			++words_vowel_count;
 		}
 	}
 	if (!words_vowel_count)
-		printf("File doesn't contain words which begin with vowel\n");
-	else printf("\n");
-	return "";
+		throw std::logic_error("File doesn't contain words which begin with vowel\n");
+	else
+		return result;
 }
 
 bool seminar5::isVowel(char c)
