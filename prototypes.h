@@ -21,6 +21,18 @@ static int read_int()
 }
 
 /**
+ * Tries to read double value from console, throws an exception if not succeed.
+ * @return Double value.
+ * @throws std::invalid_argument.
+ */
+static double read_double()
+{
+	char buffer[10];
+	std::scanf("%s", buffer);
+	return std::stod(buffer, nullptr);
+}
+
+/**
  * Clears screen by using os-dependent terminal commands
  */
 static void clear_screen()
@@ -64,7 +76,7 @@ namespace seminar3
 
 	struct Result
 	{
-		int sum;
+		double sum;
 		int quantity;
 		int* indices;
 	};
@@ -79,14 +91,14 @@ namespace seminar3
 	 * @param array_size - size of an array
 	 * @return pointer to a created array
 	 */
-	int* create_array(int array_size);
+	double* create_array(int array_size);
 
 	/**
 	 * Prints out an array.
 	 * @param array - an array to print.
 	 * @param array_size - size of given array.
 	 */
-	void print_array(const int* array, int array_size);
+	void print_array(const double* array, int array_size);
 
 	/**
 	 * Finds a sum of odd elements of given array.
@@ -94,7 +106,7 @@ namespace seminar3
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
 	 */
-	Result sum_of_odd_elements(const int* array, int array_size);
+	Result sum_of_odd_elements(const double* array, int array_size);
 
 	/**
 	 * Finds a sum of elements between first and last negative elements.
@@ -102,7 +114,7 @@ namespace seminar3
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
 	 */
-	Result sum_of_elements_between_first_and_last_negatives(const int* array, int array_size);
+	Result sum_of_elements_between_first_and_last_negatives(const double* array, int array_size);
 }
 
 /**

@@ -5,7 +5,7 @@ void seminar3::menu()
 	print_header("Main >> Seminar 3");
 	printf("Please enter an array size:\n");
 	auto array_size = read_int();
-	int* array = create_array(array_size);
+	double* array = create_array(array_size);
 	while (true)
 	{
 		print_header("Main >> Seminar 3");
@@ -24,19 +24,18 @@ void seminar3::menu()
 				print_array(array, array_size);
 				try
 				{
-					auto sum = sum_of_odd_elements(array, array_size);
-					printf("Sum of odd elements is %d\n", sum.sum);
-					printf("Their indices are [ ");
-					for (auto i = 0; i < sum.quantity; i++)
-						printf("%d ", sum.indices[i]);
+					auto result = sum_of_odd_elements(array, array_size);
+					printf("Sum of odd elements is %f\n"
+						   "Their indices are [ ", result.sum);
+					for (auto i = 0; i < result.quantity; i++)
+						printf("%d ", result.indices[i]);
 					printf("]\n");
-					await_input();
 				}
 				catch (const std::range_error& exception)
 				{
 					printf("Sum can't be found! Reason: %s", exception.what());
 				}
-				//await_input();
+				await_input();
 				break;
 			}
 			case 2:
@@ -46,7 +45,8 @@ void seminar3::menu()
 				try
 				{
 					auto result = sum_of_elements_between_first_and_last_negatives(array, array_size);
-					printf("Sum of elements between first and last negatives is %d\n[ ", result.sum);
+					printf("Sum of elements between first and last negatives is %f\n"
+						   "Their indices are [ ", result.sum);
 					for (int i = 0; i < result.quantity; i++)
 						printf("%d ", result.indices[i]);
 					printf("]\n");
@@ -72,28 +72,28 @@ void seminar3::menu()
 	}
 }
 
-int* seminar3::create_array(int array_size)
+double* seminar3::create_array(int array_size)
 {
-	auto* array = new int[array_size];
+	auto* array = new double[array_size];
 	printf("Please fill an array:\n");
 	for (int i = 0; i < array_size; i++)
-		array[i] = read_int();
+		array[i] = read_double();
 	return array;
 }
 
-void seminar3::print_array(const int* array, int array_size)
+void seminar3::print_array(const double* array, int array_size)
 {
 	printf("Current array is: [ ");
 	for (int i = 0; i < array_size; i++)
-		printf("%d ", array[i]);
+		printf("%f ", array[i]);
 	printf("]\n===================================================================\n");
 }
 
-seminar3::Result seminar3::sum_of_odd_elements(const int* array, int array_size)
+seminar3::Result seminar3::sum_of_odd_elements(const double* array, int array_size)
 {
 	if (array_size < 4)
 		throw std::range_error("Not enough elements in array!\n");
-	auto sum{ 0 };
+	auto sum{ 0.0 };
 	auto quantity{ array_size / 2 };
 	auto* indices = new int[quantity];
 	for (int i = 1; i < array_size; i += 2)
@@ -104,13 +104,13 @@ seminar3::Result seminar3::sum_of_odd_elements(const int* array, int array_size)
 	return { sum, quantity, indices };
 }
 
-seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
+seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(const double* array, int array_size)
 {
 	if (array_size == 1)
 		throw std::range_error("There's only one element in array!\n");
 	auto first_negative_index{ -1 };
 	auto last_negative_index{ -1 };
-	auto sum{ 0 };
+	auto sum{ 0.0 };
 	auto quantity{ 0 };
 	auto* indices = new int[quantity];
 	for (int i = 0; i < ceil(array_size / 2.0); i++)
@@ -127,7 +127,6 @@ seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(cons
 	else if (first_negative_index < last_negative_index)
 	{
 		quantity = last_negative_index - first_negative_index - 1;
-		std::cout << quantity << std::endl;
 		for (int i = first_negative_index + 1; i < last_negative_index; i++)
 		{
 			sum += array[i];
