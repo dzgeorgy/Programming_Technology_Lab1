@@ -131,7 +131,7 @@ namespace seminar4
 	int* quantity_of_elements_in_rows_without_negative(int** matrix, int matrix_size);
 
 	/**
-	 *
+	 * Finds max sum of elements between diagonals parallel to main
 	 * @param matrix - a matrix of elements
 	 * @param matrix_size - size of given matrix
 	 * @return max sum between diagonals parallel to main
