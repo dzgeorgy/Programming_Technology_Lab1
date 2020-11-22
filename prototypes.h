@@ -74,6 +74,12 @@ static void await_input()
 namespace seminar3
 {
 
+	/**
+	 * Structure used in this seminar to receive sums with indices of elements
+	 * @field sum - Sum of elements
+	 * @field quantity - Quantity of elements
+	 * @field indices - Pointer to array of indices of elements
+	 */
 	struct Result
 	{
 		double sum;
