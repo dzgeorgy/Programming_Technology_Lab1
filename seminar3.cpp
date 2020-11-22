@@ -2,15 +2,12 @@
 
 void seminar3::menu()
 {
-	clear_screen();
 	print_header("Main >> Seminar 3");
 	printf("Please enter an array size:\n");
 	auto array_size = read_int();
-	auto* array = new int[array_size];
-	fill_array(array, array_size);
+	int* array = create_array(array_size);
 	while (true)
 	{
-		clear_screen();
 		print_header("Main >> Seminar 3");
 		print_array(array, array_size);
 		printf("Choose an option:\n"
@@ -23,30 +20,36 @@ void seminar3::menu()
 			{
 			case 1:
 			{
-				clear_screen();
 				print_header("Main >> Seminar 3");
 				print_array(array, array_size);
 				try
 				{
-					int sum = sum_of_odd_elements(array, array_size);
-					printf("Sum of odd elements is %d\n", sum);
+					auto sum = sum_of_odd_elements(array, array_size);
+					printf("Sum of odd elements is %d\n", sum.sum);
+					printf("Their indices are [ ");
+					for (auto i = 0; i < sum.quantity; i++)
+						printf("%d ", sum.indices[i]);
+					printf("]\n");
+					await_input();
 				}
 				catch (const std::range_error& exception)
 				{
 					printf("Sum can't be found! Reason: %s", exception.what());
 				}
-				await_input();
+				//await_input();
 				break;
 			}
 			case 2:
 			{
-				clear_screen();
 				print_header("Main >> Seminar 3");
 				print_array(array, array_size);
 				try
 				{
-					int sum_x = sum_of_elements_between_first_and_last_negatives(array, array_size);
-					printf("Sum of elements between first and last negatives is %d\n", sum_x);
+					auto result = sum_of_elements_between_first_and_last_negatives(array, array_size);
+					printf("Sum of elements between first and last negatives is %d\n[ ", result.sum);
+					for (int i = 0; i < result.quantity; i++)
+						printf("%d ", result.indices[i]);
+					printf("]\n");
 				}
 				catch (const std::range_error& exception)
 				{
@@ -69,11 +72,13 @@ void seminar3::menu()
 	}
 }
 
-void seminar3::fill_array(int* array, int array_size)
+int* seminar3::create_array(int array_size)
 {
+	auto* array = new int[array_size];
 	printf("Please fill an array:\n");
 	for (int i = 0; i < array_size; i++)
 		array[i] = read_int();
+	return array;
 }
 
 void seminar3::print_array(const int* array, int array_size)
@@ -84,29 +89,36 @@ void seminar3::print_array(const int* array, int array_size)
 	printf("]\n===================================================================\n");
 }
 
-int seminar3::sum_of_odd_elements(const int* array, int array_size)
+seminar3::Result seminar3::sum_of_odd_elements(const int* array, int array_size)
 {
-	auto sum = 0;
-	for (int i = 1; i < array_size; i += 2)
-		sum += array[i];
 	if (array_size < 4)
 		throw std::range_error("Not enough elements in array!\n");
-	return sum;
+	auto sum{ 0 };
+	auto quantity{ array_size / 2 };
+	auto* indices = new int[quantity];
+	for (int i = 1; i < array_size; i += 2)
+	{
+		sum += array[i];
+		indices[i / 2] = i;
+	}
+	return { sum, quantity, indices };
 }
 
-int seminar3::sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
+seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(const int* array, int array_size)
 {
-	auto first_negative_index = -1;
-	auto last_negative_index = -1;
-	auto sum = 0;
+	if (array_size == 1)
+		throw std::range_error("There's only one element in array!\n");
+	auto first_negative_index{ -1 };
+	auto last_negative_index{ -1 };
+	auto sum{ 0 };
+	auto quantity{ 0 };
+	auto* indices = new int[quantity];
 	for (int i = 0; i < ceil(array_size / 2.0); i++)
 	{
 		if (first_negative_index == -1 && array[i] < 0) first_negative_index = i;
 		if (last_negative_index == -1 && array[array_size - 1 - i] < 0) last_negative_index = array_size - 1 - i;
 	}
-	if (array_size == 1)
-		throw std::range_error("There's only one element in array!\n");
-	else if (first_negative_index == -1 && last_negative_index == -1)
+	if (first_negative_index == -1 && last_negative_index == -1)
 		throw std::range_error("There's no negative elements!\n");
 	else if (first_negative_index == -1 || last_negative_index == -1)
 		throw std::range_error("There's only one negative element!\n");
@@ -114,10 +126,15 @@ int seminar3::sum_of_elements_between_first_and_last_negatives(const int* array,
 		throw std::range_error("There's no elements between first and last negatives!\n");
 	else if (first_negative_index < last_negative_index)
 	{
+		quantity = last_negative_index - first_negative_index - 1;
+		std::cout << quantity << std::endl;
 		for (int i = first_negative_index + 1; i < last_negative_index; i++)
+		{
 			sum += array[i];
+			indices[i - first_negative_index - 1] = i;
+		}
 	}
 	else
 		throw std::range_error("Unknown exception!");
-	return sum;
+	return { sum, quantity, indices };
 }

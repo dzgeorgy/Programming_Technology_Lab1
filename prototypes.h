@@ -21,17 +21,6 @@ static int read_int()
 }
 
 /**
- * Prints out header
- * @param title - string which should be used as title
- */
-static void print_header(const std::string& title)
-{
-	printf("===================================================================\n"
-		   "%s\n"
-		   "===================================================================\n", title.c_str());
-}
-
-/**
  * Clears screen by using os-dependent terminal commands
  */
 static void clear_screen()
@@ -41,6 +30,18 @@ static void clear_screen()
 #elif defined(__APPLE__) || defined(__linux__)
 	system("clear");
 #endif
+}
+
+/**
+ * Prints out header
+ * @param title - string which should be used as title
+ */
+static void print_header(const std::string& title)
+{
+	clear_screen();
+	printf("===================================================================\n"
+		   "%s\n"
+		   "===================================================================\n", title.c_str());
 }
 
 /**
@@ -61,17 +62,24 @@ static void await_input()
 namespace seminar3
 {
 
+	struct Result
+	{
+		int sum;
+		int quantity;
+		int* indices;
+	};
+
 	/**
 	 * Prints out menu for first task and handles user's choice.
 	 */
 	void menu();
 
 	/**
-	 * Lets user to fill an array.
-	 * @param array - an array to fill.
-	 * @param array_size - size of given array.
+	 * Creates an array with given size
+	 * @param array_size - size of an array
+	 * @return pointer to a created array
 	 */
-	void fill_array(int* array, int array_size);
+	int* create_array(int array_size);
 
 	/**
 	 * Prints out an array.
@@ -86,7 +94,7 @@ namespace seminar3
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
 	 */
-	int sum_of_odd_elements(const int* array, int array_size);
+	Result sum_of_odd_elements(const int* array, int array_size);
 
 	/**
 	 * Finds a sum of elements between first and last negative elements.
@@ -94,7 +102,7 @@ namespace seminar3
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
 	 */
-	int sum_of_elements_between_first_and_last_negatives(const int* array, int array_size);
+	Result sum_of_elements_between_first_and_last_negatives(const int* array, int array_size);
 }
 
 /**
