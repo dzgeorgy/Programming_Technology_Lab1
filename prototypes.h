@@ -130,16 +130,29 @@ namespace seminar4
 {
 
 	/**
+ 	* Structure used in this seminar to receive quantity of elements in matrix with indices of rows
+ 	* @field quantity_of_elements - Quantity of elements
+ 	* @field quantity_of_rows - Quantity of rows
+ 	* @field indices - Pointer to array of indices of rows
+ 	*/
+	struct Result
+	{
+		int* quantity_of_elements;
+		int quantity_of_rows;
+		int* indices;
+	};
+
+	/**
  	* Prints out menu for second task and handles user's choice.
  	*/
 	void menu();
 
 	/**
-	 * Lets user to fill an matrix.
+	 * Creates a matrix with given size
 	 * @param matrix - an array to fill.
 	 * @param matrix_size - size of given array.
 	 */
-	void fill_matrix(int** matrix, int matrix_size);
+	int** create_matrix(int matrix_size);
 
 	/**
 	 * Prints out a matrix.
@@ -154,7 +167,7 @@ namespace seminar4
 	 * @param matrix_size - size of given matrix
 	 * @return quantity of elements
 	 */
-	int* quantity_of_elements_in_rows_without_negative(int** matrix, int matrix_size);
+	Result quantity_of_elements_in_rows_without_negative(int** matrix, int matrix_size);
 
 	/**
 	 * Finds max sum of elements between diagonals parallel to main
