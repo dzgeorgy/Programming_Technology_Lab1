@@ -59,6 +59,7 @@ void seminar3::menu()
 				break;
 			}
 			case 3:
+				delete[] array;
 				return;
 			default:
 				throw std::invalid_argument("");
