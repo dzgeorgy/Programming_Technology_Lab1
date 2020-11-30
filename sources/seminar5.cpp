@@ -8,44 +8,53 @@ void seminar5::menu()
 	std::string path;
 	std::cin.ignore();
 	std::getline(std::cin, path);
-	while (true)
+	std::fstream file(path);
+	if (file.good())
+		while (true)
+		{
+			clear_screen();
+			print_header("Main >> Seminar 5");
+			print_path(path);
+			printf("Choose an option:\n"
+				   "1: Find words which start with vowel\n"
+				   "2: Back\n");
+			try
+			{
+				switch (read_int())
+				{
+				case 1:
+				{
+					clear_screen();
+					print_header("Main >> Seminar 5");
+					print_path(path);
+					try
+					{
+						printf("%s\n", read_string(path).c_str());
+					}
+					catch (const std::logic_error& exception)
+					{
+						printf("Unable to read file! Reason: %s", exception.what());
+					}
+					await_input();
+					break;
+				}
+				case 2:
+					return;
+				default:
+					throw std::invalid_argument("");
+				}
+			}
+			catch (const std::invalid_argument& exception)
+			{
+				printf("You entered incorrect value! Please try again.\n\n\n");
+			}
+		}
+	else
 	{
-		clear_screen();
-		print_header("Main >> Seminar 5");
-		print_path(path);
-		printf("Choose an option:\n"
-			   "1: Find words which start with vowel\n"
-			   "2: Back\n");
-		try
-		{
-			switch (read_int())
-			{
-			case 1:
-			{
-				clear_screen();
-				print_header("Main >> Seminar 5");
-				print_path(path);
-				try
-				{
-					printf("%s\n", read_string(path).c_str());
-				}
-				catch (const std::logic_error& exception)
-				{
-					printf("Unable to read file! Reason: %s", exception.what());
-				}
-				await_input();
-				break;
-			}
-			case 2:
-				return;
-			default:
-				throw std::invalid_argument("");
-			}
-		}
-		catch (const std::invalid_argument& exception)
-		{
-			printf("You entered incorrect value! Please try again.\n\n\n");
-		}
+		printf("Can't open file!\n");
+		file.close();
+		await_input();
+		return;
 	}
 }
 
