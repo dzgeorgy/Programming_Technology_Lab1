@@ -6,6 +6,13 @@ void seminar5::menu()
 	print_header("Main >> Seminar 5");
 	printf("Please enter path to file:\n");
 	std::string path;
+	std::ifstream file(path);
+	if(!file::is_open()) {
+		std::cout << "Cannot open file!" << endl;
+		system("pause");
+		return;
+	}
+	file::close();
 	std::cin.ignore();
 	std::getline(std::cin, path);
 	while (true)
@@ -57,11 +64,13 @@ void seminar5::print_path(const std::string& path)
 std::string seminar5::read_string(const std::string& path)
 {
 	std::ifstream file(path);
-	if(!file::is_open()) throw std::logic_error("Cannot open file!\n");
 	std::string result;
 	char word[15];
 	int words_vowel_count = 0;
-	if (file.eof()) throw std::logic_error("File is empty!\n");
+	if (file.eof()) {
+		file::close();
+		throw std::logic_error("File is empty!\n");
+	}
 	while (file >> word)
 	{
 		if (isVowel(word[0]))
@@ -70,7 +79,9 @@ std::string seminar5::read_string(const std::string& path)
 			++words_vowel_count;
 		}
 	}
-	if (!words_vowel_count)
+
+	file::close();
+	if (!words_vowel_count) 
 		throw std::logic_error("File doesn't contain words which begin with vowel\n");
 	else
 		return result;
