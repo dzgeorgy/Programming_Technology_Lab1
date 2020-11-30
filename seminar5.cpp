@@ -57,6 +57,7 @@ void seminar5::print_path(const std::string& path)
 std::string seminar5::read_string(const std::string& path)
 {
 	std::ifstream file(path);
+	if(!file::is_open()) throw std::logic_error("Cannot open file!\n");
 	std::string result;
 	char word[15];
 	int words_vowel_count = 0;
