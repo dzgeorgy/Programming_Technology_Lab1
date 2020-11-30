@@ -1,4 +1,4 @@
-#include "prototypes.h"
+#include "../headers/prototypes.h"
 
 void seminar3::menu()
 {

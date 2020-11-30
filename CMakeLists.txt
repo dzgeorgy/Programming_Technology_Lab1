@@ -3,4 +3,4 @@ project(Lab1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Lab1 main.cpp prototypes.h libraries.h seminar3.cpp seminar4.cpp seminar5.cpp)
+add_executable(Lab1 sources/main.cpp headers/prototypes.h headers/libraries.h sources/seminar3.cpp sources/seminar4.cpp sources/seminar5.cpp)

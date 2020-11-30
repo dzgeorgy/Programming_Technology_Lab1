@@ -16,7 +16,7 @@ bool main_menu();
 static int read_int()
 {
 	char buffer[10];
-	std::scanf("%s", buffer);
+	std::sscanf("%s", buffer);
 	return std::stoi(buffer, nullptr, 10);
 }
 

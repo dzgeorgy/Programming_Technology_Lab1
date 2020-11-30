@@ -1,4 +1,4 @@
-#include "prototypes.h"
+#include "../headers/prototypes.h"
 
 int main()
 {
@@ -14,9 +14,9 @@ bool main_menu()
 	clear_screen();
 	print_header("Main");
 	std::printf("Choose an option:\n"
-				"1: Seminar 1\n"
-				"2: Seminar 2\n"
-				"3: Seminar 3\n"
+				"1: Seminar 3\n"
+				"2: Seminar 4\n"
+				"3: Seminar 5\n"
 				"4: Exit\n");
 	try
 	{
