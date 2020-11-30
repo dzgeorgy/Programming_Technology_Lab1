@@ -114,7 +114,7 @@ seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(cons
 	auto sum{ 0.0 };
 	auto quantity{ 0 };
 	auto* indices = new int[quantity];
-	for (int i = 0; i < ceil(array_size / 2.0); i++)
+	for (int i = 0; i < std::ceil(array_size / 2.0); i++)
 	{
 		if (first_negative_index == -1 && array[i] < 0) first_negative_index = i;
 		if (last_negative_index == -1 && array[array_size - 1 - i] < 0) last_negative_index = array_size - 1 - i;
