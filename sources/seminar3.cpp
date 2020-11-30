@@ -13,7 +13,8 @@ void seminar3::menu()
 		printf("Choose an option:\n"
 			   "1: Find a sum of odd elements\n"
 			   "2: Find a sum of elements between first and last negative ones\n"
-			   "3: Shrink an array by removing all elements whose modules are less or equal 1\n");
+			   "3: Shrink an array by removing all elements whose modules are less or equal 1\n"
+			   "4: Exit");
 		try
 		{
 			switch (read_int())
