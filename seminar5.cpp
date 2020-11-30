@@ -6,6 +6,9 @@ void seminar5::menu()
 	print_header("Main >> Seminar 5");
 	printf("Please enter path to file:\n");
 	std::string path;
+	std::cin.ignore();
+	std::getline(std::cin, path);
+	//Checking file
 	std::ifstream file(path);
 	if(!file::is_open()) {
 		std::cout << "Cannot open file!" << endl;
@@ -13,8 +16,6 @@ void seminar5::menu()
 		return;
 	}
 	file::close();
-	std::cin.ignore();
-	std::getline(std::cin, path);
 	while (true)
 	{
 		clear_screen();
