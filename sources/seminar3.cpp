@@ -13,7 +13,7 @@ void seminar3::menu()
 		printf("Choose an option:\n"
 			   "1: Find a sum of odd elements\n"
 			   "2: Find a sum of elements between first and last negative ones\n"
-			   "3: Back\n");
+			   "3: Shrink an array by removing all elements whose modules are less or equal 1\n");
 		try
 		{
 			switch (read_int())
@@ -59,6 +59,23 @@ void seminar3::menu()
 				break;
 			}
 			case 3:
+			{
+				print_header("Main >> Seminar 3");
+				print_array(array, array_size);
+				try
+				{
+					auto shrinked_array = shrink_array(array, array_size);
+					printf("Shrinked array is:\n");
+					print_array(shrinked_array, array_size);
+				}
+				catch (const std::range_error& exception)
+				{
+					printf("Can't shrink an array! Reason: %s", exception.what());
+				}
+				await_input();
+				break;
+			}
+			case 4:
 				delete[] array;
 				return;
 			default:
@@ -137,4 +154,19 @@ seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(cons
 	else
 		throw std::range_error("Unknown exception!");
 	return { sum, quantity, indices };
+}
+
+double* seminar3::shrink_array(const double* array, int array_size)
+{
+	auto* shrinked_array = new double[array_size]{ 0 };
+	auto counter{ 0 };
+	for (int i = 0; i < array_size; i++)
+	{
+		if (abs(array[i]) <= 1)
+		{
+			shrinked_array[counter] = array[i];
+			counter++;
+		}
+	}
+	return shrinked_array;
 }

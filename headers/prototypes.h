@@ -16,7 +16,7 @@ bool main_menu();
 static int read_int()
 {
 	char buffer[10];
-	std::sscanf("%s", buffer);
+	std::scanf("%s", buffer);
 	return std::stoi(buffer, nullptr, 10);
 }
 
@@ -121,6 +121,8 @@ namespace seminar3
 	 * @return an sum of elements.
 	 */
 	Result sum_of_elements_between_first_and_last_negatives(const double* array, int array_size);
+
+	double* shrink_array(const double* array, int array_size);
 }
 
 /**
