@@ -29,7 +29,7 @@ void seminar5::menu()
 					print_path(path);
 					try
 					{
-						printf("%s\n", read_string(path).c_str());
+						printf("%s\n", read_string(file).c_str());
 					}
 					catch (const std::logic_error& exception)
 					{
@@ -39,6 +39,7 @@ void seminar5::menu()
 					break;
 				}
 				case 2:
+					file.close();
 					return;
 				default:
 					throw std::invalid_argument("");
@@ -63,9 +64,8 @@ void seminar5::print_path(const std::string& path)
 	printf("Path is: %s\n===================================================================\n", path.c_str());
 }
 
-std::string seminar5::read_string(const std::string& path)
+std::string seminar5::read_string(std::basic_fstream<char> file)
 {
-	std::ifstream file(path);
 	std::string result;
 	char word[15];
 	int words_vowel_count = 0;

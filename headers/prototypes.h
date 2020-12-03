@@ -193,10 +193,10 @@ namespace seminar5
 
 	/**
 	 * Reads file from specified path and returns string with words starts with vowels
-	 * @param path - string which represents path to file which should be opened
-	 * @return string read from
+	 * @param file - stream of file
+	 * @return string read from file
 	 */
-	std::string read_string(const std::string& path);
+	std::string read_string(std::basic_fstream<char> file);
 
 	/**
 	 * Checks if given char is vowel
