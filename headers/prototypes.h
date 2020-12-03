@@ -196,7 +196,7 @@ namespace seminar5
 	 * @param file - stream of file
 	 * @return string read from file
 	 */
-	std::string read_string(std::basic_fstream<char> file);
+	std::string read_string(std::basic_fstream<char>& file);
 
 	/**
 	 * Checks if given char is vowel

@@ -64,7 +64,7 @@ void seminar5::print_path(const std::string& path)
 	printf("Path is: %s\n===================================================================\n", path.c_str());
 }
 
-std::string seminar5::read_string(std::basic_fstream<char> file)
+std::string seminar5::read_string(std::basic_fstream<char>& file)
 {
 	std::string result;
 	char word[15];
