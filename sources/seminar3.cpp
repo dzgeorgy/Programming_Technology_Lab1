@@ -3,6 +3,11 @@
 void seminar3::menu()
 {
 	print_header("Main >> Seminar 3");
+	printf("Options available in this seminar:\n"
+		   "1: Find a sum of odd elements\n"
+		   "2: Find a sum of elements between first and last negative ones\n"
+		   "3: Shrink an array by removing all elements whose modules are less or equal 1\n"
+		   "===================================================================\n");
 	printf("Please enter an array size:\n");
 	auto array_size = read_int();
 	double* array = create_array(array_size);
