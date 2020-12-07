@@ -122,6 +122,12 @@ namespace seminar3
 	 */
 	Result sum_of_elements_between_first_and_last_negatives(const double* array, int array_size);
 
+	/**
+	 * Shrinks an array by removing
+	 * @param array
+	 * @param array_size
+	 * @return
+	 */
 	double* shrink_array(const double* array, int array_size);
 }
 
