@@ -65,9 +65,10 @@ void seminar3::menu()
 				print_array(array, array_size);
 				try
 				{
-					auto shrinked_array = shrink_array(array, array_size);
-					printf("Shrinked array is:\n");
-					print_array(shrinked_array, array_size);
+					auto shrunk_array = shrink_array(array, array_size);
+					printf("Shrunk array is:\n");
+					print_array(shrunk_array, array_size);
+					delete[] shrunk_array;
 				}
 				catch (const std::range_error& exception)
 				{
@@ -159,15 +160,15 @@ seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(cons
 
 double* seminar3::shrink_array(const double* array, int array_size)
 {
-	auto* shrinked_array = new double[array_size]{ 0 };
+	auto* shrunk_array = new double[array_size]{ 0 };
 	auto counter{ 0 };
 	for (int i = 0; i < array_size; i++)
 	{
 		if (abs(array[i]) <= 1)
 		{
-			shrinked_array[counter] = array[i];
+			shrunk_array[counter] = array[i];
 			counter++;
 		}
 	}
-	return shrinked_array;
+	return shrunk_array;
 }
