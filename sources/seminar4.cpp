@@ -43,7 +43,7 @@ void seminar4::menu()
 			}
 			case 3:
 				for (int i = 0; i < matrix_size; i++)
-					delete[] matrix[i];
+					delete matrix[i];
 				delete[] matrix;
 				return;
 			default:
