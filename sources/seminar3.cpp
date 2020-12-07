@@ -103,7 +103,7 @@ double* seminar3::create_array(int array_size)
 
 void seminar3::print_array(const double* array, int array_size)
 {
-	printf("Current array is: [ ");
+	printf("Array is: [ ");
 	for (int i = 0; i < array_size; i++)
 		printf("%f ", array[i]);
 	printf("]\n===================================================================\n");
