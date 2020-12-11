@@ -2,13 +2,22 @@
 
 void seminar4::menu()
 {
-	print_header("Main >> Seminar 4");
-	printf("Options available in this seminar:\n"
-		   "1: Find quantity of elements in rows without negative elements\n"
-		   "2: Find max sum of elements of diagonals which are parallel to main\n"
-		   "===================================================================\n");
-	printf("Please enter square matrix size:\n");
-	auto matrix_size = read_int();
+	int matrix_size;
+	do
+	{
+		print_header("Main >> Seminar 4");
+		printf("Options available in this seminar:\n"
+			   "1: Find quantity of elements in rows without negative elements\n"
+			   "2: Find max sum of elements of diagonals which are parallel to main\n"
+			   "===================================================================\n");
+		printf("Please enter square matrix size:\n");
+		matrix_size = read_int();
+		if (matrix_size < 2)
+		{
+			printf("Matrix size must be greater or equal than two\n");
+			await_input();
+		}
+	} while (matrix_size < 2);
 	int** matrix = create_matrix(matrix_size);
 	while (true)
 	{
