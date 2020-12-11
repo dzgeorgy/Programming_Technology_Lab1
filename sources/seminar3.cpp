@@ -158,6 +158,8 @@ seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(cons
 		throw std::range_error("There's only one negative element!\n");
 	else if (std::abs(first_negative_index - last_negative_index) == 1)
 		throw std::range_error("There's no elements between first and last negatives!\n");
+	else if (std::abs(first_negative_index - last_negative_index) == 2)
+		throw std::range_error("There's only one element between first and last negatives!\n");
 	else if (first_negative_index < last_negative_index)
 	{
 		quantity = last_negative_index - first_negative_index - 1;
