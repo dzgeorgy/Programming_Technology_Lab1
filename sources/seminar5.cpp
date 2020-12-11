@@ -2,7 +2,6 @@
 
 void seminar5::menu()
 {
-	clear_screen();
 	print_header("Main >> Seminar 5");
 	printf("Options available in this seminar:\n"
 		   "1: Find words which start with vowel\n"
