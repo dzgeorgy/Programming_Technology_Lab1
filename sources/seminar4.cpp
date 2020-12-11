@@ -89,7 +89,7 @@ void seminar4::print_matrix(int** matrix, int matrix_size)
 	for (int i = 0; i < matrix_size; i++)
 	{
 		for (int j = 0; j < matrix_size; j++)
-			printf("%d ", matrix[i][j]);
+			printf("%3d ", matrix[i][j]);
 		printf("\n");
 	}
 	printf("\n===================================================================\n");
