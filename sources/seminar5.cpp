@@ -35,7 +35,7 @@ void seminar5::menu()
 					}
 					catch (const std::logic_error& exception)
 					{
-						printf("Unable to read file! Reason: %s", exception.what());
+						printf("%s", exception.what());
 					}
 					await_input();
 					break;
@@ -71,7 +71,9 @@ std::string seminar5::read_string(std::basic_fstream<char>& file)
 	std::string result;
 	char word[15];
 	int words_vowel_count = 0;
-	if (file.eof()) throw std::logic_error("File is empty!\n");
+	file.seekg(0, std::ios::end);
+	if (file.tellg() == 0) throw std::logic_error("File is empty!\n");
+	file.seekg(0);
 	while (file >> word)
 	{
 		if (is_vowel(word[0]))
