@@ -209,7 +209,7 @@ namespace seminar5
 	 * @param c - char that should be checked
 	 * @return true if it's vowel and false otherwise
 	 */
-	bool isVowel(char c);
+	bool is_vowel(char c);
 
 	/**
 	 * Prints current path to opened file

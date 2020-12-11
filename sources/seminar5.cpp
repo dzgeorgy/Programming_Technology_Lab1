@@ -75,7 +75,7 @@ std::string seminar5::read_string(std::basic_fstream<char>& file)
 	if (file.eof()) throw std::logic_error("File is empty!\n");
 	while (file >> word)
 	{
-		if (isVowel(word[0]))
+		if (is_vowel(word[0]))
 		{
 			result.append(word).append(" ");
 			++words_vowel_count;
@@ -87,7 +87,7 @@ std::string seminar5::read_string(std::basic_fstream<char>& file)
 		return result;
 }
 
-bool seminar5::isVowel(char c)
+bool seminar5::is_vowel(char c)
 {
 	return c == 'A' || c == 'a' || c == 'E' || c == 'e' ||
 		   c == 'Y' || c == 'y' || c == 'U' || c == 'u' ||
