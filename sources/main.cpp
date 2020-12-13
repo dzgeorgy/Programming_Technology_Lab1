@@ -23,7 +23,7 @@ bool main_menu()
 		switch (read_int())
 		{
 		case 1:
-			seminar3::menu();
+			seminar3::entry();
 			return true;
 		case 2:
 			seminar4::menu();

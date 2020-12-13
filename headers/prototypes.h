@@ -3,10 +3,12 @@
 #include "libraries.h"
 
 /**
- * Prints out main menu and handles user's choice of menu items.
+ * Prints out main menu and handles user's choice of entry items.
  * @return True if application should continue work and false otherwise.
  */
 bool main_menu();
+
+template<typename T> std::string type_name();
 
 /**
  * Tries to read integer value from console, throws an exception if not succeed.
@@ -80,55 +82,73 @@ namespace seminar3
 	 * @field quantity - Quantity of elements
 	 * @field indices - Pointer to array of indices of elements
 	 */
+	template<typename T>
 	struct Result
 	{
-		double sum;
+		T sum;
 		int quantity;
 		int* indices;
 	};
 
 	/**
-	 * Prints out menu for first task and handles user's choice.
+	 * Entry point for Seminar 3, prints out start UI and handles initialization.
 	 */
+	void entry();
+
+	/**
+	 * Function that prints out seminar options and handles user's input.
+	 * @tparam T - Type of data which be used for arrays (int or double).
+	 */
+	template<typename T>
 	void menu();
 
 	/**
 	 * Creates an array with given size
 	 * @param array_size - size of an array
 	 * @return pointer to a created array
+	 * @tparam T - Type of data which be used for arrays (int or double).
 	 */
-	double* create_array(int array_size);
+	template<typename T>
+	T* create_array(int array_size);
 
 	/**
 	 * Prints out an array.
 	 * @param array - an array to print.
 	 * @param array_size - size of given array.
+	 * @tparam T - Type of data which be used for arrays (int or double).
 	 */
-	void print_array(const double* array, int array_size);
+	template<typename T>
+	void print_array(const T* array, int array_size);
 
 	/**
 	 * Finds a sum of odd elements of given array.
 	 * @param array - an array which sum should be found.
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
+	 * @tparam T - Type of data which be used for arrays (int or double).
 	 */
-	Result sum_of_odd_elements(const double* array, int array_size);
+	template<typename T>
+	Result<T> sum_of_odd_elements(const T* array, int array_size);
 
 	/**
 	 * Finds a sum of elements between first and last negative elements.
 	 * @param array - an array which sum should be found.
 	 * @param array_size - size of given array.
 	 * @return an sum of elements.
+	 * @tparam T - Type of data which be used for arrays (int or double).
 	 */
-	Result sum_of_elements_between_first_and_last_negatives(const double* array, int array_size);
+	template<typename T>
+	Result<T> sum_of_elements_between_first_and_last_negatives(const T* array, int array_size);
 
 	/**
 	 * Shrinks an array by removing
 	 * @param array
 	 * @param array_size
-	 * @return
+	 * @return pointer to shrunk array
+	 * @tparam T - Type of data which be used for arrays (int or double).
 	 */
-	double* shrink_array(const double* array, int array_size);
+	template<typename T>
+	T* shrink_array(const T* array, int array_size);
 }
 
 /**
@@ -151,7 +171,7 @@ namespace seminar4
 	};
 
 	/**
- 	* Prints out menu for second task and handles user's choice.
+ 	* Prints out entry for second task and handles user's choice.
  	*/
 	void menu();
 
@@ -193,7 +213,7 @@ namespace seminar5
 {
 
 	/**
- 	* Prints out menu for second task and handles user's choice.
+ 	* Prints out entry for second task and handles user's choice.
  	*/
 	void menu();
 

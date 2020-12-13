@@ -1,25 +1,47 @@
 #include "../headers/prototypes.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat"
+void seminar3::entry()
+{
+	print_header("Main >> Seminar 3");
+	printf("Options available in this seminar:\n"
+		   "- Find a sum of odd elements\n"
+		   "- Find a sum of elements between first and last negative ones\n"
+		   "- Shrink an array by removing all elements whose modules are less or equal 1\n"
+		   "===================================================================\n");
+	printf("Please choose a type of data:\n"
+		   "1: Integers\n"
+		   "2: Real numbers\n");
+	int data_type = read_int();
+	switch (data_type)
+	{
+	case 1:
+		menu<int>();
+		break;
+	case 2:
+		menu<double>();
+		break;
+	default:
+		printf("You entered incorrect value!\n");
+		await_input();
+		return;
+	}
+}
+
+template<typename T>
 void seminar3::menu()
 {
+	printf("===================================================================\n"
+		   "Please enter an array size:\n");
 	int array_size;
 	do
 	{
-		print_header("Main >> Seminar 3");
-		printf("Options available in this seminar:\n"
-			   "1: Find a sum of odd elements\n"
-			   "2: Find a sum of elements between first and last negative ones\n"
-			   "3: Shrink an array by removing all elements whose modules are less or equal 1\n"
-			   "===================================================================\n");
-		printf("Please enter an array size:\n");
 		array_size = read_int();
-		if (array_size < 1)
-		{
-			printf("Array size must be greater or equal than one\n");
-			await_input();
-		}
-	} while (array_size < 1);
-	double* array = create_array(array_size);
+		if (array_size < 2)
+			printf("Array size must be greater or equal than one. Please enter another value...\n");
+	} while (array_size < 2);
+	auto array = create_array<T>(array_size);
 	while (true)
 	{
 		print_header("Main >> Seminar 3");
@@ -39,10 +61,14 @@ void seminar3::menu()
 				print_array(array, array_size);
 				try
 				{
-					auto result = sum_of_odd_elements(array, array_size);
-					printf("Sum of odd elements is %f\n"
-						   "Their indices are [ ", result.sum);
-					for (auto i = 0; i < result.quantity; i++)
+					Result<T> result = sum_of_odd_elements(array, array_size);
+					printf("Sum of odd elements is ");
+					if (typeid(T) == typeid(int))
+						printf("%d\n", result.sum);
+					else if (typeid(T) == typeid(double))
+						printf("%f\n", result.sum);
+					printf("Their indices are [ ");
+					for (auto i{ 0 }; i < result.quantity; ++i)
 						printf("%d ", result.indices[i]);
 					printf("]\n");
 				}
@@ -59,10 +85,14 @@ void seminar3::menu()
 				print_array(array, array_size);
 				try
 				{
-					auto result = sum_of_elements_between_first_and_last_negatives(array, array_size);
-					printf("Sum of elements between first and last negatives is %f\n"
-						   "Their indices are [ ", result.sum);
-					for (int i = 0; i < result.quantity; i++)
+					Result<T> result = sum_of_elements_between_first_and_last_negatives(array, array_size);
+					printf("Sum of elements between first and last negatives is ");
+					if (typeid(T) == typeid(int))
+						printf("%d\n", result.sum);
+					else if (typeid(T) == typeid(double))
+						printf("%f\n", result.sum);
+					printf("Their indices are [ ");
+					for (auto i{ 0 }; i < result.quantity; ++i)
 						printf("%d ", result.indices[i]);
 					printf("]\n");
 				}
@@ -92,42 +122,56 @@ void seminar3::menu()
 				break;
 			}
 			case 4:
+			{
 				delete[] array;
 				return;
+			}
 			default:
-				throw std::invalid_argument("");
+				throw std::invalid_argument("You entered incorrect value! Please try again...\n");
 			}
 		}
 		catch (const std::invalid_argument& exception)
 		{
-			printf("You entered incorrect value! Please try again.\n");
+			printf("%s", exception.what());
 			await_input();
 		}
 	}
 }
 
-double* seminar3::create_array(int array_size)
+template<typename T>
+T* seminar3::create_array(int array_size)
 {
-	auto* array = new double[array_size];
-	printf("Please fill an array:\n");
-	for (int i = 0; i < array_size; i++)
-		array[i] = read_double();
+	auto* array = new T[array_size];
+	printf("===================================================================\n"
+		   "Please fill an array:\n");
+	for (int i = 0; i < array_size; ++i)
+		if (typeid(T) == typeid(int))
+			array[i] = read_int();
+		else if (typeid(T) == typeid(double))
+			array[i] = read_double();
+		else throw std::invalid_argument("Template function received unsupported type!");
 	return array;
 }
 
-void seminar3::print_array(const double* array, int array_size)
+template<typename T>
+void seminar3::print_array(const T* array, int array_size)
 {
 	printf("Array is: [ ");
 	for (int i = 0; i < array_size; i++)
-		printf("%f ", array[i]);
+		if (typeid(T) == typeid(int))
+			printf("%d ", array[i]);
+		else if (typeid(T) == typeid(double))
+			printf("%f ", array[i]);
+		else throw std::invalid_argument("Template function received unsupported type!");
 	printf("]\n===================================================================\n");
 }
 
-seminar3::Result seminar3::sum_of_odd_elements(const double* array, int array_size)
+template<typename T>
+seminar3::Result<T> seminar3::sum_of_odd_elements(const T* array, int array_size)
 {
 	if (array_size < 4)
 		throw std::range_error("Not enough elements in array!\n");
-	auto sum{ 0.0 };
+	T sum{ 0 };
 	auto quantity{ array_size / 2 };
 	auto* indices = new int[quantity];
 	for (int i = 1; i < array_size; i += 2)
@@ -138,13 +182,14 @@ seminar3::Result seminar3::sum_of_odd_elements(const double* array, int array_si
 	return { sum, quantity, indices };
 }
 
-seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(const double* array, int array_size)
+template<typename T>
+seminar3::Result<T> seminar3::sum_of_elements_between_first_and_last_negatives(const T* array, int array_size)
 {
 	if (array_size == 1)
 		throw std::range_error("There's only one element in array!\n");
 	auto first_negative_index{ -1 };
 	auto last_negative_index{ -1 };
-	auto sum{ 0.0 };
+	T sum{ 0 };
 	auto quantity{ 0 };
 	auto* indices = new int[quantity];
 	for (int i = 0; i < std::ceil(array_size / 2.0); i++)
@@ -174,9 +219,10 @@ seminar3::Result seminar3::sum_of_elements_between_first_and_last_negatives(cons
 	return { sum, quantity, indices };
 }
 
-double* seminar3::shrink_array(const double* array, int array_size)
+template<typename T>
+T* seminar3::shrink_array(const T* array, int array_size)
 {
-	auto* shrunk_array = new double[array_size]{ 0 };
+	auto* shrunk_array = new T[array_size]{ 0 };
 	auto counter{ 0 };
 	for (int i = 0; i < array_size; i++)
 	{
@@ -188,3 +234,4 @@ double* seminar3::shrink_array(const double* array, int array_size)
 	}
 	return shrunk_array;
 }
+#pragma clang diagnostic pop
