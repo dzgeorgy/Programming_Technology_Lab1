@@ -7,6 +7,7 @@ int main()
 		if (!main_menu())
 			return 0;
 	}
+	
 }
 
 bool main_menu()
@@ -26,7 +27,7 @@ bool main_menu()
 			seminar3::entry();
 			return true;
 		case 2:
-			seminar4::menu();
+			seminar4::entry();
 			return true;
 		case 3:
 			seminar5::menu();

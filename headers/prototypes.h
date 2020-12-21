@@ -8,8 +8,6 @@
  */
 bool main_menu();
 
-template<typename T> std::string type_name();
-
 /**
  * Tries to read integer value from console, throws an exception if not succeed.
  * @return Integer value.
@@ -171,8 +169,15 @@ namespace seminar4
 	};
 
 	/**
- 	* Prints out entry for second task and handles user's choice.
- 	*/
+	 * Entry point for Seminar 4, prints out start UI and handles initialization.
+	 */
+	void entry();
+
+	/**
+	 * Function that prints out seminar options and handles user's input.
+	 * @tparam T - Type of data which be used for arrays (int or double).
+	 */
+	template<typename T>
 	void menu();
 
 	/**
@@ -180,14 +185,16 @@ namespace seminar4
 	 * @param matrix - an array to fill.
 	 * @param matrix_size - size of given array.
 	 */
-	int** create_matrix(int matrix_size);
+	template<typename T>
+	T** create_matrix(int matrix_size);
 
 	/**
 	 * Prints out a matrix.
 	 * @param matrix - a matrix to print.
 	 * @param matrix_size - size of given matrix.
 	 */
-	void print_matrix(int** matrix, int matrix_size);
+	template<typename T>
+	void print_matrix(T** matrix, int matrix_size);
 
 	/**
 	 * Finds quantity of elements in rows which does not contain negative
@@ -195,7 +202,8 @@ namespace seminar4
 	 * @param matrix_size - size of given matrix
 	 * @return quantity of elements
 	 */
-	Result quantity_of_elements_in_rows_without_negative(int** matrix, int matrix_size);
+	template<typename T>
+	Result quantity_of_elements_in_rows_without_negative(T** matrix, int matrix_size);
 
 	/**
 	 * Finds max sum of elements between diagonals parallel to main
@@ -203,7 +211,8 @@ namespace seminar4
 	 * @param matrix_size - size of given matrix
 	 * @return max sum between diagonals parallel to main
 	 */
-	int find_max_sum_in_diagonals(int** matrix, int matrix_size);
+	template<typename T>
+	int find_max_sum_in_diagonals(T** matrix, int matrix_size);
 }
 
 /**

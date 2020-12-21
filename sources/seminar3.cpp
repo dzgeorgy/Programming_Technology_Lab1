@@ -38,9 +38,9 @@ void seminar3::menu()
 	do
 	{
 		array_size = read_int();
-		if (array_size < 2)
+		if (array_size < 1)
 			printf("Array size must be greater or equal than one. Please enter another value...\n");
-	} while (array_size < 2);
+	} while (array_size < 1);
 	auto array = create_array<T>(array_size);
 	while (true)
 	{
